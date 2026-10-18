@@ -194,8 +194,8 @@ MUTATIONS = [
      "if isPlaying,",
      "disabled automatic music stops the reader even when resting content is Music"),
     ("resting music retains a disabled reader", "notch", "Sources/Vorssaint/Services/Notch/NotchService.swift",
-     "            || (!hiddenUntilHover && (NotchSupport.watchesMusicActivity() || NotchSupport.routes(.track))))",
-     "            || (!hiddenUntilHover && (NotchSupport.idleContent() == .music || NotchSupport.watchesMusicActivity()"
+     "                && (NotchSupport.watchesMusicActivity() || NotchSupport.routes(.track))))",
+     "                && (NotchSupport.idleContent() == .music || NotchSupport.watchesMusicActivity()"
      " || NotchSupport.routes(.track))))",
      "disabled automatic music stops the reader even when resting content is Music"),
     ("closing music retains its on-demand reader", "notch", "Sources/Vorssaint/Services/Notch/NotchService.swift",

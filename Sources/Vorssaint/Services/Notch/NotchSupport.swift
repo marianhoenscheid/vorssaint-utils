@@ -1935,6 +1935,17 @@ enum NotchSupport {
         defaults.bool(forKey: DefaultsKey.notchHideUntilHover) && defaults.bool(forKey: DefaultsKey.notchOpenOnHover)
     }
 
+    /// Hidden until hover, the island can still come into sight for as long
+    /// as an activity runs or a notice shows, and then it takes notices.
+    static func hiddenShowsActivity(in defaults: UserDefaults = .standard) -> Bool {
+        hidesUntilHover(in: defaults) && defaults.bool(forKey: DefaultsKey.notchHiddenShowsActivity)
+    }
+
+    /// Hidden until hover and out of sight for everything until then.
+    static func hidesNoticesUntilHover(in defaults: UserDefaults = .standard) -> Bool {
+        hidesUntilHover(in: defaults) && !defaults.bool(forKey: DefaultsKey.notchHiddenShowsActivity)
+    }
+
     static func idleContent(in defaults: UserDefaults = .standard) -> NotchIdleContent {
         let choice = NotchIdleContent(rawValue: defaults.string(forKey: DefaultsKey.notchIdleContent) ?? "") ?? .none
         return canRest(with: choice, in: defaults) ? choice : .none
