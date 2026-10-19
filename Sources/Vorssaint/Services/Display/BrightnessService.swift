@@ -1187,9 +1187,10 @@ final class BrightnessService: ObservableObject {
         let defaults = UserDefaults.standard
         let wantsKeyRouting = defaults.bool(forKey: DefaultsKey.brightnessKeysEnabled)
         // An island away in full screen, or set to stay hidden until hover
-        // without showing activity, shows no notices while closed, so its keys keep the system's own
-        // feedback. The plain key tap runs on its own thread and keeps this
-        // sample; the island asks for a new one when full screen hides it.
+        // without showing activity, shows no notices while closed, so its
+        // keys keep the system's own feedback. The plain key tap runs on its
+        // own thread and keeps this sample; the island asks for a new one
+        // when full screen hides it.
         let wantsBrightnessOSD = BrightnessSupport.overlayReplacesNative(
             overlayEnabled: defaults.bool(forKey: DefaultsKey.brightnessOSDEnabled),
             islandRoutes: NotchSupport.routes(.brightness),

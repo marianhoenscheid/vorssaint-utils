@@ -411,7 +411,8 @@ final class NotchService: ObservableObject {
         !hiddenInFullscreen && UserDefaults.standard.bool(forKey: DefaultsKey.notchHideUntilHover)
             && UserDefaults.standard.bool(forKey: DefaultsKey.notchOpenOnHover)
             && !expanded && !peeking && !dragPlaceholder && captureControls == nil
-            // Set to show activity, it comes into sight while one runs or a notice shows.
+            // Set to show activity, it comes into sight while one runs or a
+            // notice shows.
             && !(NotchSupport.hiddenShowsActivity() && (notice != nil || compactActivity != nil))
     }
 
@@ -2566,7 +2567,9 @@ final class NotchService: ObservableObject {
             schedulePointerFollow()
             syncMirrors()
             flushMascotReaction()
-            mascotRestedInView = mascotRestsInView && !expanded
+            // Hidden until hover, the closed island shows no companion either,
+            // so an activity bringing it into view has none to take over from.
+            mascotRestedInView = mascotRestsInView && !expanded && !hiddenUntilHover
         }
         if hiddenUntilHover || (captureControls != nil && captureSelectionInProgress) {
             finishMusicDeparture()
@@ -3204,7 +3207,8 @@ final class NotchService: ObservableObject {
             }
             return
         }
-        // An island hidden until it shows activity measures on, to have its room when one comes.
+        // An island hidden until it shows activity measures on, to have its
+        // room when one comes.
         let wanted = running && !suspended && (!hiddenUntilHover || NotchSupport.hiddenShowsActivity())
             && !expanded && captureControls == nil
             && (idleContent != .none || compactActivity != nil || !geometry.isNotched || mascotWantsRoom)

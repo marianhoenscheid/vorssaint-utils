@@ -1929,8 +1929,8 @@ enum NotchSupport {
         return batteryWarning(percent: percent, externalConnected: externalConnected, in: defaults)
     }
 
-    /// The closed island stays out of sight until the pointer reaches it, and
-    /// shows no notices while it waits.
+    /// The closed island stays out of sight until the pointer reaches it.
+    /// Unless set to show activity, it shows no notices while it waits.
     static func hidesUntilHover(in defaults: UserDefaults = .standard) -> Bool {
         defaults.bool(forKey: DefaultsKey.notchHideUntilHover) && defaults.bool(forKey: DefaultsKey.notchOpenOnHover)
     }
